@@ -1,4 +1,5 @@
-class Decorator < Namable
+# Decorator Class inheriting from Nameable class
+class Decorator < Nameable
   def initialize(name)
     super(name)
     @name = name

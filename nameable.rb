@@ -1,4 +1,5 @@
-class Namable
+# Nameable class
+class Nameable
   def initialize(name = 'unknown')
     @name = name
   end
