@@ -1,11 +1,8 @@
 # Student Class Inheriting From Person Class
 class Student < Person
-  def initialize(classroom, age, parent_permission = true , name = "unknown")
-    super(age, name, parent_permission)
+  def initialize(classroom)
+    super
     @classroom = classroom
-    @age = age
-    @parent_permission = parent_permission
-    @name = name
   end
 
   def play_hooky
