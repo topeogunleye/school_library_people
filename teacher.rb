@@ -1,7 +1,7 @@
 # Teacher Class Inheriting From Person Class
 class Teacher < Person
-  def initialize(specialization)
-    super(name, age, parent_permission = 'true')
+  def initialize(specialization, age, name = 'unknown', parent_permission = 'true')
+    super(name, age, parent_permission)
     @specialization = specialization
     @name = name
     @age = age
