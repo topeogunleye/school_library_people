@@ -3,8 +3,8 @@ class Student < Person
   def initialize(classroom, age, name = 'unknown', parent_permission = 'true')
     super(name, age, parent_permission)
     @classroom = classroom
-    @name = name
     @age = age
+    @name = name
     @parent_permission = parent_permission
   end
 
