@@ -1,5 +1,5 @@
 # Person class
-class Person
+class Person < Namable
   attr_reader :id
   attr_accessor :name, :age
 
