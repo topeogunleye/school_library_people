@@ -1,4 +1,6 @@
+require './decorator'
 
+# CapitalizeDecorator Inherits from Decorator class
 class CapitalizeDecorator < Decorator
   def initialize(name)
     super(name)
