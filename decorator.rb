@@ -1,6 +1,10 @@
 class Decorator < Namable
-  def initialize(component)
-    super()
-    @component = component
+  def initialize(name)
+    super(name)
+    @name = name
+  end
+
+  def correct_name
+    @name.correct_name
   end
 end
