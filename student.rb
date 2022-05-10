@@ -6,4 +6,8 @@ class Student < Person
     @parent_permission = parent_permission
     @name = name
   end
+
+  def play_hooky
+    "¯\(ツ)/¯"
+  end
 end
