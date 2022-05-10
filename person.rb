@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Person class
 class Person
   attr_reader :id
@@ -12,13 +14,11 @@ class Person
 
   private
 
-  def is_of_age?
+  def of_age?
     age >= 18
   end
 
   def can_use_services?
     is_of_age? || @parent_permission == true
   end
-
 end
-
