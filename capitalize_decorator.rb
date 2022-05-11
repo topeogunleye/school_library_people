@@ -2,12 +2,15 @@ require './decorator'
 
 # CapitalizeDecorator Inherits from Decorator class
 class CapitalizeDecorator < Decorator
-  def initialize(name)
-    super(name)
-    @name = name
+  def initialize(component)
+    super(component)
+    @component = component
   end
 
   def correct_name
-    @name.correct_name.capitalize
+    @component.correct_name.capitalize
   end
 end
+
+capitalizedPerson = CapitalizeDecorator.new("Tope")
+capitalizedPerson.correct_name

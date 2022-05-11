@@ -2,12 +2,12 @@ require './decorator'
 
 # TrimmerDecorator inherits from Decorator class
 class TrimmerDecorator < Decorator
-  def initialize(name)
-    super(name)
-    @name = name
+  def initialize(component)
+    super(component)
+    @component = component
   end
 
   def correct_name
-    @name.correct_name[0..9]
+    @component.correct_name[0..9]
   end
 end
