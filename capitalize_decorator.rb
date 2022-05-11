@@ -11,6 +11,3 @@ class CapitalizeDecorator < Decorator
     @component.correct_name.capitalize
   end
 end
-
-capitalizedPerson = CapitalizeDecorator.new("Tope")
-capitalizedPerson.correct_name
