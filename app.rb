@@ -178,7 +178,7 @@ def main
   if choice.positive? && choice < 9 && choice != 7
     menu_list(choice)
   elsif choice == 7
-    exit
+    app.exit
   else
     puts 'Invalid input'
     main
