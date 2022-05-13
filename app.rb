@@ -156,17 +156,17 @@ def menu_list(num)
   app = App.new
   case num
   when 1
-     app.list_books
+    app.list_books
   when 2
-     app.list_people
+    app.list_people
   when 3
-     app.create_person
+    app.create_person
   when 4
-     app.create_book
+    app.create_book
   when 5
-     app.create_rental
+    app.create_rental
   when 6
-     app.list_rentals
+    app.list_rentals
   end
 end
 
