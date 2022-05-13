@@ -28,6 +28,10 @@ class App
     @rentals_arr
   end
 
+  def success(message)
+    puts "Successfully created #{message}"
+  end
+
   def user_input
     puts 'Welcome to School Library App'
     puts 'Please choose an option by entering a number:'
@@ -67,33 +71,33 @@ class App
   end
 
   def create_teacher
-    puts 'What subject does the teacher take?'
+    puts 'What is the teachers specialization?'
     subject = gets.chomp
-    puts 'What is the age of the teacher?'
-    age = gets.chomp.to_i
     puts 'What is the name of the teacher?'
     name = gets.chomp
+    puts 'What is the age of the teacher?'
+    age = gets.chomp.to_i
     puts 'Does the teacher have permission to use the library services [Y/N]: ?'
     permission = choice_permission
     teacher = Teacher.new(subject, age, name, parent_permission: permission)
     people_store(teacher)
+    success('Teacher')
   end
 
   def create_student
-    puts 'What classroom is the student?'
-    classroom = gets.chomp
-    puts 'What is the age of the student?'
-    age = gets.chomp.to_i
     puts 'What is the name of the student?'
     name = gets.chomp
+    puts 'What is the age of the student?'
+    age = gets.chomp.to_i
     puts 'Does the student have permission to use the library services?'
     permission = choice_permission
     student = Student.new(classroom, age, name, parent_permission: permission)
     people_store(student)
+    success('Student')
   end
 
   def create_person
-    puts 'Student (1) or Teacher (2)? [Enter a number]'
+    puts 'Teacher (1) or Student (1)? [Enter a number]'
     type = gets.chomp.to_i
     case type
     when 1
@@ -112,6 +116,7 @@ class App
     author = gets.chomp
     book = Book.new(title, author)
     book_store(book)
+    success('Book')
     main
   end
 
@@ -130,6 +135,7 @@ class App
     person = @people_arr[person_index]
     rental = Rental.new(date, person, book)
     rentals_store(rental)
+    success('Rental')
     main
   end
 
