@@ -77,7 +77,7 @@ class App
       puts 'Invalid input'
       main
     end
-    [permission]
+    permission
   end
 
   def create_teacher
