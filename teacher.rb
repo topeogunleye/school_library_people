@@ -2,8 +2,8 @@ require './person'
 
 # Teacher Class Inheriting From Person Class
 class Teacher < Person
-  def initialize(specialization, age, name = 'unknown', parent_permission = 'true')
-    super(name, age, parent_permission)
+  def initialize(specialization, age, name = 'unknown', parent_permission: true)
+    super(name, age, parent_permission: true)
     @specialization = specialization
     @age = age
     @name = name

@@ -8,9 +8,24 @@ require_relative './student'
 # App Class that will serve as your console app entry-point.
 class App
   def initialize
-    @books = []
-    @people = []
-    @rentals = []
+    @books_arr = []
+    @people_arr = []
+    @rentals_arr = []
+  end
+
+  def book_store(book)
+    @books_arr.push(book)
+    @books_arr
+  end
+
+  def people_store(person)
+    @people_arr.push(person)
+    @people_arr
+  end
+
+  def rentals_store(rental)
+    @rentals_arr.push(rental)
+    @rentals_arr
   end
 
   def user_input
@@ -26,65 +41,132 @@ class App
   end
 
   def list_books
-
+    @books_arr.each do |book|
+      puts "Title: #{book.title}, Author: #{book.author}"
+    end
+    main
   end
 
   def list_people
+    @people_arr.each { |person| puts "[#{person.class}]: Name: #{person.name}, ID: #{person.id} AGE: #{person.age}" }
+    main
+  end
 
+  def choice_permission
+    choice = gets.chomp.downcase
+    permission = true
+    case choice
+    when 'y'
+      permission = true
+    when 'n'
+      permission = false
+    else
+      puts 'Invalid Submission'
+    end
+    [permission]
+  end
+
+  def create_teacher
+    puts 'What subject does the teacher take?'
+    subject = gets.chomp
+    puts 'What is the age of the teacher?'
+    age = gets.chomp.to_i
+    puts 'What is the name of the teacher?'
+    name = gets.chomp
+    puts 'Does the teacher have permission to use the library services [Y/N]: ?'
+    permission = choice_permission
+    teacher = Teacher.new(subject, age, name, parent_permission: permission)
+    people_store(teacher)
+  end
+
+  def create_student
+    puts 'What classroom is the student?'
+    classroom = gets.chomp
+    puts 'What is the age of the student?'
+    age = gets.chomp.to_i
+    puts 'What is the name of the student?'
+    name = gets.chomp
+    puts 'Does the student have permission to use the library services?'
+    permission = choice_permission
+    student = Student.new(classroom, age, name, parent_permission: permission)
+    people_store(student)
   end
 
   def create_person
-    puts 'What type of person would you like to create?'
-    puts '1. Teacher'
-    puts '2. Student'
+    puts 'Student (1) or Teacher (2)? [Enter a number]'
     type = gets.chomp.to_i
     case type
     when 1
-      puts 'What subject does the teacher take?'
-      subject = gets.chomp
-      puts 'What is the age of the teacher?'
-      age = gets.chomp.to_i
-      puts 'What is the name of the teacher?'
-      name = gets.chomp
-      puts 'Does the teacher have permission to use the library services?'
-      permission = gets.chomp.to_i
-      teacher = Teacher.new(subject, age, name, parent_permission: permission)
-      @people.push(teacher)
+      create_teacher
     when 2
-      puts 'What classroom is the student?'
-      classroom = gets.chomp
-      puts 'What is the age of the student?'
-      age = gets.chomp.to_i
-      puts 'What is the name of the student?'
-      name = gets.chomp
-      puts 'Does the student have permission to use the library services?'
-      permission = gets.chomp.to_i
-      student = Student.new(classroom, age, name, parent_permission: permission)
-      @people.push(student)
-    else
-      puts 'Invalid Entry'
+      create_student
+    else puts 'Invalid Entry'
     end
+    main
   end
 
   def create_book
-    puts 'What is the book title ?'
+    puts 'Title: '
     title = gets.chomp
-    puts 'What is the book author ?'
+    puts 'Author: '
     author = gets.chomp
     book = Book.new(title, author)
-    @books.push(book)
+    book_store(book)
+    main
   end
 
   def create_rental
-
+    puts 'Select a book from the following list by number'
+    @books_arr.each_with_index { |book, index| puts "#{index} Title: #{book.title}, Author: #{book.author}" }
+    book_index = gets.chomp.to_i
+    puts 'Select a person from the following list by number (not id)'
+    @people_arr.each_with_index do |person, index|
+      puts "#{index} [#{person.class}]: Name: #{person.name}, ID: #{person.id} AGE: #{person.age}"
+    end
+    person_index = gets.chomp.to_i
+    print 'Enter the date [YYYY-MM-DD]: '
+    date = gets.chomp
+    book = @books_arr[book_index]
+    person = @people_arr[person_index]
+    rental = Rental.new(date, person, book)
+    rentals_store(rental)
+    main
   end
 
   def list_rentals
+    puts 'Enter a person id: '
+    @people_arr.each { |person| puts "#{person.name} - Person ID: #{person.id}" }
+    person_id = gets.chomp.to_i
+    rentals = @rentals_arr.select { |rental| rental.person.id == person_id }
 
+    if rentals.empty?
+      puts "Person with ID #{person_id} has no rentals yet"
+    else
+      rentals.each { |rentl| puts "Date: #{rentl.date}, Book #{rentl.book.title} by #{rentl.book.author}" }
+    end
+    main
   end
 
   def exit
+    puts 'Goodbye'
+  end
+end
 
+def menu_list(num)
+  app = App.new
+  case num
+  when 1
+     app.list_books
+  when 2
+     app.list_people
+  when 3
+     app.create_person
+  when 4
+     app.create_book
+  when 5
+     app.create_rental
+  when 6
+     app.list_rentals
   end
 end
 
@@ -92,25 +174,14 @@ def main
   app = App.new
   app.user_input
 
-  choice = get.chomp.to_i
-
-  case choice
-  when 1
-    app.list_books
-  when 2
-    app.list_people
-  when 3
-    app.create_person
-  when 4
-    app.create_book
-  when 5
-    app.create_rental
-  when 6
-    app.list_rentals
-  when 7
-    app.exit
+  choice = gets.chomp.to_i
+  if choice.positive? && choice < 9 && choice != 7
+    menu_list(choice)
+  elsif choice == 7
+    exit
   else
-    puts 'Invalid Entry'
+    puts 'Invalid input'
+    main
   end
 end
 
