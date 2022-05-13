@@ -32,6 +32,14 @@ class App
     puts "Successfully created #{message}"
   end
 
+  def user_info
+    print 'Enter the name of the person: '
+    name = gets.chomp
+    print 'Age: '
+    age = gets.chomp
+    [name, age]
+  end
+
   def user_input
     puts 'Welcome to School Library App'
     puts 'Please choose an option by entering a number:'
@@ -57,27 +65,25 @@ class App
   end
 
   def choice_permission
-    choice = gets.chomp.downcase
-    permission = true
-    case choice
-    when 'y'
+    print 'Has parent permission? [Y/N]: '
+    parent_permission = gets.chomp
+    print 'Enter the classroom: '
+    case parent_permission.upcase
+    when 'Y'
       permission = true
-    when 'n'
+    when 'N'
       permission = false
     else
-      puts 'Invalid Submission'
+      puts 'Invalid input'
+      main
     end
     [permission]
   end
 
   def create_teacher
+    name, age = user_info
     puts 'What is the teachers specialization?'
     subject = gets.chomp
-    puts 'What is the name of the teacher?'
-    name = gets.chomp
-    puts 'What is the age of the teacher?'
-    age = gets.chomp.to_i
-    puts 'Does the teacher have permission to use the library services [Y/N]: ?'
     permission = choice_permission
     teacher = Teacher.new(subject, age, name, parent_permission: permission)
     people_store(teacher)
@@ -85,19 +91,17 @@ class App
   end
 
   def create_student
-    puts 'What is the name of the student?'
-    name = gets.chomp
-    puts 'What is the age of the student?'
-    age = gets.chomp.to_i
-    puts 'Does the student have permission to use the library services?'
+    name, age = user_info
     permission = choice_permission
+    print 'Enter the classroom: '
+    classroom = gets.chomp
     student = Student.new(classroom, age, name, parent_permission: permission)
     people_store(student)
     success('Student')
   end
 
   def create_person
-    puts 'Teacher (1) or Student (1)? [Enter a number]'
+    puts 'Teacher (1) or Student (2)? [Enter a number]'
     type = gets.chomp.to_i
     case type
     when 1

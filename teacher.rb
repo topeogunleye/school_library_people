@@ -1,5 +1,3 @@
-require './person'
-
 # Teacher Class Inheriting From Person Class
 class Teacher < Person
   def initialize(specialization, age, name = 'unknown', parent_permission: true)
