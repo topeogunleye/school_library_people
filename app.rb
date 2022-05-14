@@ -81,8 +81,7 @@ def create_teacher
   name, age = user_info
   puts 'What is the teachers specialization?'
   subject = gets.chomp
-  permission = choice_permission
-  teacher = Teacher.new(subject, age, name, parent_permission: permission)
+  teacher = Teacher.new(subject, age, name)
   people_store(teacher)
   success('Teacher')
 end
@@ -90,9 +89,7 @@ end
 def create_student
   name, age = user_info
   permission = choice_permission
-  print 'Enter the classroom: '
-  classroom = gets.chomp
-  student = Student.new(classroom, age, name, parent_permission: permission)
+  student = Student.new(age, name, parent_permission: permission)
   people_store(student)
   success('Student')
 end
