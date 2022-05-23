@@ -32,5 +32,3 @@ module Store
     @rentals_arr
   end
 end
-
-include Store
