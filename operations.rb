@@ -39,6 +39,7 @@ class Operations
     puts 'What is the teachers specialization?'
     subject = gets.chomp
     teacher = Teacher.new(subject, age, name)
+    store = Store.new
     store.people_store(teacher)
     success('Teacher')
   end
