@@ -5,30 +5,30 @@ module Store
   @people_arr = []
   @rentals_arr = []
 
-  def book_store(book)
+  def self.book_store(book)
     @books_arr.push(book)
     @books_arr
   end
 
-  def people_store(person)
+  def self.people_store(person)
     @people_arr.push(person)
     @people_arr
   end
 
-  def rentals_store(rental)
+  def self.rentals_store(rental)
     @rentals_arr.push(rental)
     @rentals_arr
   end
 
-  def books_arr
+  def self.books_arr
     @books_arr
   end
 
-  def people_arr
+  def self.people_arr
     @people_arr
   end
 
-  def rentals_arr
+  def self.rentals_arr
     @rentals_arr
   end
 end
