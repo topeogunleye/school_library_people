@@ -1,42 +1,23 @@
-require_relative './student'
+require_relative './classroom'
+require_relative './person'
 
-class Store
-  attr_reader :books_arr, :people_arr, :rentals_arr
+# Student Class Inheriting From Person Class
+class Student < Person
+  attr_reader :classroom
 
-  def initialize
-    @books_arr = []
-    @people_arr = []
-    @rentals_arr = []
-  end
-module Store
-  @books_arr = []
-  @people_arr = []
-  @rentals_arr = []
-
-  def book_store(book)
-    @books_arr.push(book)
-@ -23,11 +19,18 @@ class Store
-    @rentals_arr.push(rental)
-    @rentals_arr
-  end
-end
-
-store = Store.new
-student = Student.new(15, 'Daniel')
-  def books_arr
-    @books_arr
+  def initialize(age, name = 'unknown', parent_permission: true)
+    super(name, age, parent_permission: true)
+    @age = age
+    @name = name
+    @parent_permission = parent_permission
   end
 
-  def people_arr
-    @people_arr
+  def play_hooky
+    "¯\(ツ)/¯"
   end
 
-  def rentals_arr
-    @rentals_arr
+  def classroom=(classroom)
+    @classroom = classroom
+    classroom.students.push(self) unless classroom.students.include?(self)
   end
 end
-
-store.people_store(student)
-@people_arr = store.people_arr
-@people_arr.each { |person| puts "[#{person.class}]: Name: #{person.name}, ID: #{person.id} AGE: #{person.age}" }
-include Store
