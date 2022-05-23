@@ -1,6 +1,9 @@
 require_relative './store'
 
+store = Store.new
+
 class Operations
+
   def user_input
     puts 'Welcome to School Library App'
     puts 'Please choose an option by entering a number:'
@@ -38,7 +41,7 @@ class Operations
     puts 'What is the teachers specialization?'
     subject = gets.chomp
     teacher = Teacher.new(subject, age, name)
-    people_store(teacher)
+    store.people_store(teacher)
     success('Teacher')
   end
 
@@ -62,7 +65,7 @@ class Operations
     name, age = user_info
     permission = choice_permission
     student = Student.new(age, name, parent_permission: permission)
-    people_store(student)
+    store.people_store(student)
     success('Student')
   end
 
@@ -85,7 +88,7 @@ class Operations
     puts 'Author: '
     author = gets.chomp
     book = Book.new(title, author)
-    book_store(book)
+    store.book_store(book)
     success('Book')
     run
   end
@@ -104,7 +107,7 @@ class Operations
     book = @books_arr[book_index]
     person = @people_arr[person_index]
     rental = Rental.new(date, person, book)
-    rentals_store(rental)
+    store.rentals_store(rental)
     success('Rental')
     run
   end
