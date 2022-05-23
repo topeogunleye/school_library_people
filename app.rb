@@ -28,4 +28,3 @@ def menu_list(num)
     operations.list_rentals
   end
 end
-

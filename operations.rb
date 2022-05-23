@@ -1,7 +1,6 @@
 require_relative './store'
 
 class Operations
-
   def list_books
     store = Store.new
     books_arr = store.books_arr
@@ -13,7 +12,9 @@ class Operations
 
   def list_people
     store = Store.new
-    store.people_arr.each { |person| puts "[#{person.class}]: Name: #{person.name}, ID: #{person.id} AGE: #{person.age}" }
+    store.people_arr.each do |person|
+      puts "[#{person.class}]: Name: #{person.name}, ID: #{person.id} AGE: #{person.age}"
+    end
     run
   end
 
