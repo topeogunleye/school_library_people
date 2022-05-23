@@ -87,6 +87,7 @@ class Operations
     puts 'Author: '
     author = gets.chomp
     book = Book.new(title, author)
+    store = Store.new
     store.book_store(book)
     success('Book')
     run
