@@ -29,14 +29,6 @@ def success(message)
   puts "Successfully created #{message}"
 end
 
-def user_info
-  print 'Enter the name of the person: '
-  name = gets.chomp
-  print 'Age: '
-  age = gets.chomp
-  [name, age]
-end
-
 def user_input
   puts 'Welcome to School Library App'
   puts 'Please choose an option by entering a number:'
@@ -61,6 +53,23 @@ def list_people
   main
 end
 
+def user_info
+  print 'Enter the name of the person: '
+  name = gets.chomp
+  print 'Age: '
+  age = gets.chomp
+  [name, age]
+end
+
+def create_teacher
+  name, age = user_info
+  puts 'What is the teachers specialization?'
+  subject = gets.chomp
+  teacher = Teacher.new(subject, age, name)
+  people_store(teacher)
+  success('Teacher')
+end
+
 def choice_permission
   print 'Has parent permission? [Y/N]: '
   parent_permission = gets.chomp
@@ -75,15 +84,6 @@ def choice_permission
     main
   end
   permission
-end
-
-def create_teacher
-  name, age = user_info
-  puts 'What is the teachers specialization?'
-  subject = gets.chomp
-  teacher = Teacher.new(subject, age, name)
-  people_store(teacher)
-  success('Teacher')
 end
 
 def create_student
