@@ -24,6 +24,8 @@ class Operations
   end
 
   def list_people
+    store = Store.new
+    @people_arr = store.people_arr
     @people_arr.each { |person| puts "[#{person.class}]: Name: #{person.name}, ID: #{person.id} AGE: #{person.age}" }
     run
   end
