@@ -107,6 +107,7 @@ class Operations
     book = @books_arr[book_index]
     person = @people_arr[person_index]
     rental = Rental.new(date, person, book)
+    store = Store.new
     store.rentals_store(rental)
     success('Rental')
     run
