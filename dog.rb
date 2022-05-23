@@ -1,18 +1,18 @@
 class Dog
   def walking
-    return "walking"
+    'walking'
   end
 
   def speak
-    return "woof"
+    'woof'
   end
 end
 
 class JackRusselTerrier < Dog
   def speak
-    return "Arff"
+    'Arff'
   end
 end
 
-sam = JackRusselTerrier.new()
+sam = JackRusselTerrier.new
 puts sam.walking
