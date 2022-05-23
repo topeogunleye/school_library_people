@@ -1,3 +1,5 @@
+require_relative './student'
+
 class Store
   attr_reader :books_arr, :people_arr, :rentals_arr
 
@@ -22,3 +24,10 @@ class Store
     @rentals_arr
   end
 end
+
+store = Store.new
+student = Student.new(15, 'Daniel')
+
+store.people_store(student)
+@people_arr = store.people_arr
+@people_arr.each { |person| puts "[#{person.class}]: Name: #{person.name}, ID: #{person.id} AGE: #{person.age}" }

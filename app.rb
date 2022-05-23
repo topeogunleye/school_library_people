@@ -13,7 +13,7 @@ end
 
 def menu_list(num)
   operations = Operations.new
-  case num 
+  case num
   when 1
     operations.list_books
   when 2
@@ -28,3 +28,4 @@ def menu_list(num)
     operations.list_rentals
   end
 end
+
