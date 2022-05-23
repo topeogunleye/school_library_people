@@ -1,7 +1,5 @@
 require_relative './store'
 
-store = Store.new
-
 class Operations
 
   def user_input
@@ -65,6 +63,7 @@ class Operations
     name, age = user_info
     permission = choice_permission
     student = Student.new(age, name, parent_permission: permission)
+    store = Store.new
     store.people_store(student)
     success('Student')
   end
