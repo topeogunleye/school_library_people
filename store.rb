@@ -1,4 +1,6 @@
 class Store
+  attr_reader :books_arr, :people_arr, :rentals_arr
+
   def initialize
     @books_arr = []
     @people_arr = []

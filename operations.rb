@@ -15,6 +15,8 @@ class Operations
   end
 
   def list_books
+    store = Store.new
+    @books_arr = store.books_arr
     @books_arr.each do |book|
       puts "Title: #{book.title}, Author: #{book.author}"
     end
