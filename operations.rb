@@ -16,8 +16,8 @@ class Operations
 
   def list_books
     store = Store.new
-    @books_arr = store.books_arr
-    @books_arr.each do |book|
+    books_arr = store.books_arr
+    books_arr.each do |book|
       puts "Title: #{book.title}, Author: #{book.author}"
     end
     run
@@ -25,8 +25,7 @@ class Operations
 
   def list_people
     store = Store.new
-    @people_arr = store.people_arr
-    @people_arr.each { |person| puts "[#{person.class}]: Name: #{person.name}, ID: #{person.id} AGE: #{person.age}" }
+    store.people_arr.each { |person| puts "[#{person.class}]: Name: #{person.name}, ID: #{person.id} AGE: #{person.age}" }
     run
   end
 
