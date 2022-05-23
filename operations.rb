@@ -120,6 +120,8 @@ class Operations
 
   def list_rentals
     puts 'Enter a person id: '
+    store = Store.new
+    @rentals_arr = store.rentals_arr
     @people_arr.each { |person| puts "#{person.name} - Person ID: #{person.id}" }
     person_id = gets.chomp.to_i
     rentals = @rentals_arr.select { |rental| rental.person.id == person_id }
