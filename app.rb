@@ -7,24 +7,19 @@ require_relative './operations'
 
 # App Class that will serve as your console app entry-point.
 
-def success(message)
-  puts "Successfully created #{message}"
-end
-
 def menu_list(num)
-  operations = Operations.new
   case num
   when 1
-    operations.list_books
+    Operations.list_books
   when 2
-    operations.list_people
+    Operations.list_people
   when 3
-    operations.create_person
+    Operations.create_person
   when 4
-    operations.create_book
+    Operations.create_book
   when 5
-    operations.create_rental
+    Operations.create_rental
   when 6
-    operations.list_rentals
+    Operations.list_rentals_by_person_id
   end
 end
