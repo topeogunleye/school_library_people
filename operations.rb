@@ -3,7 +3,6 @@ require_relative './helper'
 require 'json'
 require_relative './run'
 
-
 class Operations
   def self.push(item)
     if item.is_a?(Person)
@@ -133,4 +132,3 @@ class Operations
     run
   end
 end
-
